@@ -45,7 +45,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm install --loglevel=error --no-update-notifier
+    - run: npm install
     - name: Run Build Frontend
       uses: actions/setup-node@v3
       with:
