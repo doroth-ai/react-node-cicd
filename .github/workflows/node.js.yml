@@ -33,10 +33,10 @@ jobs:
     - name: Clean cache
       run: npm cache clean --force
     - name: Run Install
-      run: npm i
+      run: npm install -y
     - run: cd frontend
     - name: Run Install
-      run: npm i
+      run: npm install -y
     - name: Run Build
       run: npm run build
       env:
