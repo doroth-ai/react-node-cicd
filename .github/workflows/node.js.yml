@@ -45,13 +45,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm install -y
+    - run: npm install --loglevel=error --no-update-notifier
     - name: Run Build Frontend
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: cd frontend && npm install && npm run build && cd ..
+    - run: cd frontend && npm install --loglevel=error --no-update-notifier && npm run build && cd ..
     - name: Run Restart PM2
       uses: actions/setup-node@v3
       with:
