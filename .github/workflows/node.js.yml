@@ -11,6 +11,7 @@ on:
 
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  CI: false
 
 jobs:
   build:
