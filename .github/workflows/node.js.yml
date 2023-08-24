@@ -51,13 +51,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: cd frontend && npm install && npm run build && cd ..
+    - run: cd frontend && npm install pm&& npm run build && cd ..
     - name: Run Restart PM2
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: pm2 stop 0 && pm2 start 0
+    - run: pm2 delete ecosystem.config.js --env production 
+    - run: pm2 start ecosystem.config.js --env production 
+    - run: pm2 status
     - run: pm2 save
     - name: Run Restart Nginx
       uses: actions/setup-node@v3
