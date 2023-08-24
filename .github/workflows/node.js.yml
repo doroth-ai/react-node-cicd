@@ -28,9 +28,11 @@ jobs:
     - run: npm i
     - run: cd frontend
     - run: npm i
-    - run: npm run-script build-prod 
+    - run: npm run build-prod 
     - run: cd ..
     - run: pm2 stop 0
     - run: pm2 start 0
     - run: pm2 save
     - run: sudo service nginex restart
+
+    
