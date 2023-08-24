@@ -31,19 +31,12 @@ jobs:
       run: npm ci
     - name: Clean cache
       run: npm cache clean --force
-    - name: Run Install
+    - name: Run Install .
       run: npm install -y
-    - run: cd frontend
-    - name: Run Install
-      run: npm install -y
-    - name: Run Build
-      run: npm run build
-      env:
-        CI: false
-    - run: cd ..
-    - run: pm2 stop 0
+    - name: Run Build Frontend
+    - run: cd frontend && npm install && npm run build && cd ..
     - name: Run Restart PM2
-      run: pm2 start 0
+    - run: pm2 stop 0 && pm2 start 0
     - run: pm2 save
     - name: Run Restart Nginx
       run: sudo service nginx restart
