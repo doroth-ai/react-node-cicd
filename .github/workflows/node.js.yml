@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [14.x, 16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -24,18 +24,23 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Run CI
+      run: npm ci
     - name: Clean cache
       run: npm cache clean --force
-    - run: npm i
+    - name: Run Install
+      run: npm i
     - run: cd frontend
-    - run: npm i
-    - run: npm run build
-      env:
-        CI: false
+    - name: Run Install
+      run: npm i
+    - name: Run Build
+      run: npm run build --if-present
     - run: cd ..
     - run: pm2 stop 0
-    - run: pm2 start 0
+    - name: Run Restart PM2
+      run: pm2 start 0
     - run: pm2 save
-    - run: sudo service nginex restart
+    - name: Run Restart Nginx
+      run: sudo service nginx restart
 
     
