@@ -28,17 +28,41 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Run CI
-      run: npm ci
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
     - name: Clean cache
-      run: npm cache clean --force
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm cache clean --force
     - name: Run Install .
-      run: npm install -y
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm install -y
     - name: Run Build Frontend
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
     - run: cd frontend && npm install && npm run build && cd ..
     - name: Run Restart PM2
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
     - run: pm2 stop 0 && pm2 start 0
     - run: pm2 save
     - name: Run Restart Nginx
-      run: sudo service nginx restart
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: sudo service nginx restart
 
     
