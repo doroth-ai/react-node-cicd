@@ -28,7 +28,7 @@ jobs:
     - run: npm i
     - run: cd frontend
     - run: npm i
-    - run: npm run-script build 
+    - run: npm run-script build-prod 
     - run: cd ..
     - run: pm2 stop 0
     - run: pm2 start 0
