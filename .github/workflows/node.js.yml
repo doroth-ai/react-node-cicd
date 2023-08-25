@@ -51,7 +51,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: cd frontend && npm install --omit=optional && cd ..
+    - run: cd frontend && npm install && cd ..
     - name: Run Build Frontend
       uses: actions/setup-node@v3
       with:
